@@ -54,7 +54,7 @@ big_fail()
 if [ -d $WORKDIR ] ; then
 	log "FAIL!"
 	log "Content so far of the working directory $WORKDIR "
-	ls -el $WORKDIR >> $LOGFILE
+	ls -l $WORKDIR >> $LOGFILE
 fi
 clean_up
 echo $RED
@@ -104,7 +104,7 @@ backup_made()
 echo $LINE
 $SHOW "message10" ; echo "$MAINDEST" 	# USB Image created in:
 $SHOW "message23"		# "The content of the folder is:"
-ls "$MAINDEST" -e1rSh | sed 's/-.........    1//'
+ls "$MAINDEST" -1rSh | sed 's/-.........    1//' 
 echo $LINE
 if  [ $HARDDISK != 1 ]; then
 	$SHOW "message11" ; echo "$EXTRA"		# and there is made an extra copy in:
@@ -119,7 +119,7 @@ backup_made_nfi()
 echo $LINE
 $SHOW "message42" ; echo "$MAINDEST" 	# NFI Image created in: 
 $SHOW "message23"		# "The content of the folder is:"
-ls "$MAINDEST" -e1rSh | sed 's/-.........    1//' 
+ls "$MAINDEST" -1rSh | sed 's/-.........    1//' 
 echo $LINE
 if  [ $HARDDISK != 1 ]; then
 	$SHOW "message11" ; echo "$EXTRA"		# and there is made an extra copy in:
@@ -367,8 +367,8 @@ echo -n $YELLOW
 {
 $SHOW "message24"  ; printf "%d.%02d " $MINUTES $SECONDS ; $SHOW "message25"
 } 2>&1 | tee -a $LOGFILE
-ROOTSIZE=`ls "$MAINDEST" -e1S | grep root | awk {'print $3'} ` 
-KERNELSIZE=`ls "$MAINDEST" -e1S | grep kernel | awk {'print $3'} ` 
+ROOTSIZE=`ls "$MAINDEST" -1S | grep root | awk {'print $3'} ` 
+KERNELSIZE=`ls "$MAINDEST" -1S | grep kernel | awk {'print $3'} ` 
 TOTALSIZE=$((($ROOTSIZE+$KERNELSIZE)/1024))
 SPEED=$(( $TOTALSIZE/$DIFF ))
 echo $SPEED > /usr/lib/enigma2/python/Plugins/Extensions/BackupSuite/speed.txt
@@ -513,8 +513,8 @@ echo -n $YELLOW
 {
 $SHOW "message24"  ; printf "%d.%02d " $MINUTES $SECONDS ; $SHOW "message25"
 } 2>&1 | tee -a $LOGFILE
-ROOTSIZE=`ls "$MAINDEST" -e1S | grep root | awk {'print $3'} `
-KERNELSIZE=`ls "$MAINDEST" -e1S | grep kernel | awk {'print $3'} `
+ROOTSIZE=`ls "$MAINDEST" -1S | grep root | awk {'print $3'} ` 
+KERNELSIZE=`ls "$MAINDEST" -1S | grep kernel | awk {'print $3'} ` 
 TOTALSIZE=$((($ROOTSIZE+$KERNELSIZE)/1024))
 SPEED=$(( $TOTALSIZE/$DIFF ))
 echo $SPEED > /usr/lib/enigma2/python/Plugins/Extensions/BackupSuite/speed.txt
